@@ -16,3 +16,28 @@
 @media(max-width:560px){.account-page h1{font-size:54px}.account-heading,.admin-toolbar,.admin-form-head{display:block}.account-badge{display:inline-block;margin-top:12px}.track-timeline{grid-template-columns:repeat(2,1fr);text-align:left}.track-step{text-align:left;display:flex;gap:8px;align-items:center}.track-dot{margin:0}.stats-grid{grid-template-columns:1fr 1fr}.stat-card{padding:13px}.stat-card b{font-size:20px}.admin-order-grid{grid-template-columns:1fr}.admin-order-controls{grid-template-columns:1fr}.admin-toolbar select{margin-top:15px;width:100%}}
 
 .payment-verification{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0}.payment-verification .btn,.payment-verification .danger-btn{min-height:42px}
+
+/* Menu actions */
+.menu-links .admin-menu-link,
+.menu-links .menu-link-button{
+  width:100%;
+  box-sizing:border-box;
+}
+.menu-links .admin-menu-link{
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:14px;
+  margin-top:8px;
+}
+.menu-links .menu-link-button{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  border:0;
+  cursor:pointer;
+  font:inherit;
+  text-align:left;
+}
+.menu-links .menu-link-button:hover,
+.menu-links .admin-menu-link:hover{
+  transform:translateY(-1px);
+}
