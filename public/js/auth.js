@@ -1,0 +1,1 @@
+const sb=window.supabaseClient;const msg=document.getElementById('loginMsg');document.getElementById('googleBtn').addEventListener('click',async()=>{if(!sb)return msg.textContent='Supabase is not configured.';const {error}=await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+'/index.html'}});if(error)msg.textContent=error.message;});

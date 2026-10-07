@@ -1,0 +1,21 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Account — Glow & Melt</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script></head>
+<body class="site-shell"><div class="stars"></div>
+<header class="nav"><a class="brand" href="index.html"><span class="brand-mark">☾</span><span>GLOW <i>&</i> MELT</span></a><div class="nav-actions"><a class="back-home" href="orders.html">Orders</a><a class="back-home" href="index.html">Shop</a></div></header>
+<main class="section account-page">
+  <div class="eyebrow">YOUR PROFILE</div><h1>Account.</h1><p class="muted">Save your delivery details once and use them again at checkout.</p>
+  <section class="panel account-panel">
+    <div class="account-heading"><div><h3>👤 Delivery details</h3><p class="muted">These details are private to your account and used for your orders.</p></div><span class="account-badge">Saved securely</span></div>
+    <form id="accountForm" class="form-grid">
+      <label>Name<input id="name" required></label>
+      <label>Phone<input id="phone" required></label>
+      <label class="wide">Address<textarea id="address" required></textarea></label>
+      <label>City<input id="city" required></label>
+      <label>State<input id="state"></label>
+      <label>PIN<input id="pin" required inputmode="numeric"></label>
+      <label class="wide readonly-label">Email<input id="email" readonly></label>
+      <button class="btn gold" type="submit">Save delivery details</button>
+    </form>
+    <p id="accountMsg" class="error"></p>
+  </section>
+</main><script src="js/account.js"></script></body></html>

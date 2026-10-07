@@ -1,0 +1,46 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin Panel — Glow & Melt</title><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script></head>
+<body class="site-shell"><div class="stars"></div><header class="nav"><a class="brand" href="index.html"><span class="brand-mark">☾</span><span>GLOW <i>&</i> MELT</span></a><div class="nav-actions"><a class="back-home" href="index.html">Shop</a><button class="ghost-btn" id="adminLogout">Sign out</button></div></header>
+<main class="section admin-page">
+  <div id="adminGate" class="panel admin-gate">
+    <div class="eyebrow">OWNER ONLY</div><h1>Admin panel.</h1>
+    <p>Admin access is restricted to <b>wafaabbas1636@gmail.com</b>.</p>
+    <button class="btn gold" id="googleAdminBtn">Continue with Google</button>
+    <p id="adminMsg" class="error"></p>
+  </div>
+
+  <section id="adminPanel" class="hidden">
+    <div class="admin-heading"><div><div class="eyebrow">OWNER STUDIO</div><h1>Good evening.</h1><p class="muted">Products, orders, payments and delivery in one place.</p></div><button class="btn outline" id="refreshAdmin">Refresh</button></div>
+
+    <div id="stats" class="stats-grid"></div>
+
+    <div class="admin-tabs">
+      <button class="active" data-tab="ordersTab">📦 Orders</button>
+      <button data-tab="productsTab">🛍️ Products</button>
+    </div>
+
+    <div id="ordersTab">
+      <div class="panel admin-toolbar"><div><h3>All orders</h3><p class="muted">Verify UTRs, update delivery status and set expected dates.</p></div><select id="orderFilter"><option value="all">All orders</option><option value="payment_submitted">Payment submitted</option><option value="payment_verified">Payment verified</option><option value="processing">Processing</option><option value="packed">Packed</option><option value="shipped">Shipped</option><option value="out_for_delivery">Out for delivery</option><option value="delivered">Delivered</option></select></div>
+      <div id="adminOrders" class="orders-list"></div>
+    </div>
+
+    <div id="productsTab" class="hidden">
+      <div class="panel">
+        <div class="admin-form-head"><div><h3 id="productFormTitle">Add product</h3><p class="muted">Unlimited products. Up to 4 photos per product.</p></div><button class="ghost-btn hidden" id="cancelEdit">Cancel edit</button></div>
+        <form id="productForm" class="form-grid admin-product-form">
+          <input id="pid" type="hidden">
+          <label>Product name<input id="pname" required placeholder="Moon Dust"></label>
+          <label>Price ₹<input id="pprice" type="number" min="0" step="1" required placeholder="699"></label>
+          <label class="wide">Description<textarea id="pdesc" placeholder="Warm vanilla · amber · soft woods"></textarea></label>
+          <label>Discount ₹<input id="pdiscount" type="number" min="0" step="1" value="0"></label>
+          <label>Product photos <small>(up to 4)</small><input id="pfiles" type="file" accept="image/*" multiple></label>
+          <label class="wide">Or image URLs <small>(optional, one per line)</small><textarea id="purls" placeholder="https://..."></textarea></label>
+          <div class="wide"><div id="photoPreview" class="upload-preview"></div></div>
+          <button class="btn gold" type="submit" id="saveProductBtn">Add product</button>
+        </form>
+        <p id="productMsg" class="error"></p>
+      </div>
+      <div class="section-mini-head"><h3>Product management</h3><span class="muted">Edit · hide/show · delete</span></div>
+      <div id="adminProducts" class="admin-product-grid"></div>
+    </div>
+  </section>
+</main><script src="js/admin.js"></script></body></html>
