@@ -2,6 +2,7 @@ const sb=window.supabaseClient;
 const $=id=>document.getElementById(id);
 let products=[];
 let cart=JSON.parse(localStorage.getItem('glow_melt_cart')||'[]');
+let searchTerm='';
 
 const seed=[['moon-dust','Moon Dust','Warm vanilla · amber',699],['midnight-tea','Midnight Tea','Black tea · cedar · musk',749],['soft-orbit','Soft Orbit','Cream · sandalwood · cashmere',649],['after-rain','After Rain','Rainwater · jasmine · moss',699]];
 
@@ -18,12 +19,16 @@ async function load(){
 }
 function render(){
   const el=$('products');if(!el)return;
-  el.innerHTML=products.map(p=>{
+  const filtered=products.filter(p=>[p.name,p.description].some(value=>String(value||'').toLowerCase().includes(searchTerm)));
+  const count=$('productCount');
+  if(count)count.textContent=searchTerm?filtered.length+' result'+(filtered.length===1?'':'s'):'Showing '+products.length+' candle'+(products.length===1?'':'s');
+  if(!filtered.length){el.innerHTML='<div class="empty-search">No candles found. Try another scent or name. ✦</div>';return;}
+  el.innerHTML=filtered.map(p=>{
     const imgs=imageList(p);
     const src=imgs[0];
     return `<article class="product-card">
       <div class="product-art ${src?'has-photo':''}">
-        ${src?`<img class="product-photo" src="${esc(src)}" alt="${esc(p.name)}">`:'<div class="mini-candle"></div><div class="mini-flame"></div>'}
+        ${src?`<img class="product-photo" src="${esc(src)}" alt="${esc(p.name)}" loading="lazy">`:'<div class="mini-candle"></div><div class="mini-flame"></div>'}
         ${imgs.length>1?`<span class="photo-count">✦ ${imgs.length} photos</span>`:''}
         ${Number(p.discount||0)>0?`<span class="discount-badge">-₹${Number(p.discount).toFixed(0)}</span>`:''}
       </div>
@@ -40,13 +45,13 @@ function updateCart(){
   if($('cartCount'))$('cartCount').textContent=count;
   if($('menuCartCount'))$('menuCartCount').textContent=count;
   if(!$('cartItems'))return;
-  $('cartItems').innerHTML=cart.length?cart.map(x=>`<div class="cart-row"><div class="cart-thumb"><div class="mini-candle"></div></div><div><h4>${esc(x.name)}</h4><p>₹${Number(x.price).toFixed(0)} × ${x.qty}</p></div><button class="remove" onclick="removeFromCart('${esc(x.id)}')">×</button></div>`).join(''):'<p class="muted">Your bag is empty. Add something warm. ✦</p>';
-  $('cartTotal').textContent=cart.reduce((s,x)=>s+x.price*x.qty,0).toFixed(0);
+  $('cartItems').innerHTML=cart.length?cart.map(x=>`<div class="cart-row"><div class="cart-thumb"><div class="mini-candle"></div></div><div><h4>${esc(x.name)}</h4><p>₹${Number(x.price).toFixed(0)} × ${x.qty}</p></div><button class="remove" aria-label="Remove ${esc(x.name)}" onclick="removeFromCart('${esc(x.id)}')">×</button></div>`).join(''):'<p class="muted">Your bag is empty. Add something warm. ✦</p>';
+  if($('cartTotal'))$('cartTotal').textContent=cart.reduce((s,x)=>s+x.price*x.qty,0).toFixed(0);
 }
 function openCart(){$('cartDrawer')?.classList.add('open');$('menuDrawer')?.classList.remove('open');}
 function closeCart(){$('cartDrawer')?.classList.remove('open');}
-function openMenu(){$('menuDrawer')?.classList.add('open');$('cartDrawer')?.classList.remove('open');}
-function closeMenu(){$('menuDrawer')?.classList.remove('open');}
+function openMenu(){$('menuDrawer')?.classList.add('open');$('cartDrawer')?.classList.remove('open');$('menuToggle')?.setAttribute('aria-expanded','true');}
+function closeMenu(){$('menuDrawer')?.classList.remove('open');$('menuToggle')?.setAttribute('aria-expanded','false');}
 async function loadUser(){
   if(!sb)return;
   const {data:{session}}=await sb.auth.getSession();
@@ -58,6 +63,7 @@ async function loadUser(){
     if($('menuUserEmail'))$('menuUserEmail').textContent=session.user.email||'';
   }
 }
+$('productSearch')?.addEventListener('input',e=>{searchTerm=e.target.value.trim().toLowerCase();render();});
 $('cartBtn')?.addEventListener('click',openCart);
 $('closeCart')?.addEventListener('click',closeCart);
 $('checkoutBtn')?.addEventListener('click',()=>{if(!cart.length)return alert('Your bag is empty.');location.href='checkout.html'});
@@ -65,6 +71,8 @@ $('menuToggle')?.addEventListener('click',openMenu);
 $('closeMenu')?.addEventListener('click',closeMenu);
 $('menuCart')?.addEventListener('click',e=>{e.preventDefault();openCart()});
 document.querySelectorAll('[data-close-menu]').forEach(x=>x.addEventListener('click',closeMenu));
+document.querySelectorAll('.drawer-backdrop').forEach(backdrop=>backdrop.addEventListener('click',e=>{if(e.target!==backdrop)return;backdrop.classList.remove('open');closeMenu();}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeCart();closeMenu();}});
 $('menuSignOut')?.addEventListener('click',async()=>{
   if(!sb)return;
   const {error}=await sb.auth.signOut();
