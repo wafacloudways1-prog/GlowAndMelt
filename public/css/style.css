@@ -41,3 +41,122 @@
 .menu-links .admin-menu-link:hover{
   transform:translateY(-1px);
 }
+
+
+/* Storefront refresh — clearer hierarchy, touch targets and mobile comfort */
+:root{--gold:#e9bd70;--gold2:#ffe5b0;--muted:#aeb9cc;--line:rgba(255,255,255,.11);--shadow:0 24px 70px rgba(0,0,0,.38)}
+body{letter-spacing:.005em}
+::selection{background:rgba(233,189,112,.32);color:#fff}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+.nav{height:76px;background:rgba(4,9,22,.88);box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.brand{letter-spacing:.14em}
+.brand-mark{filter:drop-shadow(0 0 12px rgba(233,189,112,.28))}
+.nav nav a{transition:color .2s ease}
+.icon-btn,.login-link,.menu-toggle,.ghost-btn{min-height:42px;transition:background .2s,border-color .2s,transform .2s}
+.icon-btn:hover,.login-link:hover,.menu-toggle:hover,.ghost-btn:hover{border-color:rgba(255,229,176,.4);background:rgba(233,189,112,.09)}
+.hero{min-height:min(790px,calc(100vh - 76px));}
+.hero-copy>p{line-height:1.8}
+.btn{min-height:46px;transition:transform .2s,box-shadow .2s,filter .2s}
+.btn:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.btn.gold{box-shadow:0 12px 32px rgba(233,189,112,.18)}
+.ticker{background:rgba(255,255,255,.018)}
+.collection{padding-top:100px}
+.collection-intro{margin:0;color:var(--muted);font-size:15px}
+.collection-tools{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:-12px 0 24px}
+.search-wrap{display:flex;align-items:center;gap:10px;width:min(440px,100%);padding:0 15px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.045);color:var(--gold2)}
+.search-wrap>span{font-size:25px;line-height:1}
+.search-wrap input{width:100%;min-width:0;padding:13px 0;border:0;outline:0;background:transparent;color:var(--ink);font:inherit}
+.search-wrap input::placeholder{color:#8492aa}
+.search-wrap:focus-within{border-color:rgba(255,229,176,.55);box-shadow:0 0 0 3px rgba(233,189,112,.08)}
+.product-count{color:var(--muted);font-size:12px}
+.product-card{padding:11px;border-radius:22px;background:linear-gradient(155deg,rgba(20,39,73,.88),rgba(7,14,30,.96));}
+.product-card:hover{transform:translateY(-4px)}
+.product-art{height:260px}
+.product-photo{transition:transform .55s ease}
+.product-card:hover .product-photo{transform:scale(1.045)}
+.product-info{padding:17px 7px 7px}
+.product-info h3{font-size:23px;line-height:1.2}
+.product-info p{line-height:1.6;min-height:42px}
+.add-btn{min-height:40px;padding:9px 15px;font-weight:700;transition:background .2s,transform .2s}
+.add-btn:hover{background:rgba(244,198,107,.18);transform:translateY(-1px)}
+.story-card{background:linear-gradient(145deg,rgba(17,36,70,.88),rgba(6,12,26,.94))}
+.promise>div{padding:30px;border:1px solid transparent;border-radius:18px;transition:border-color .2s,background .2s}
+.promise>div:hover{border-color:var(--line);background:rgba(255,255,255,.025)}
+.drawer{padding:32px;backdrop-filter:blur(18px)}
+.drawer-close{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.06);line-height:1}
+.drawer-close:hover{background:rgba(255,255,255,.12)}
+.cart-row{grid-template-columns:64px 1fr auto}
+.remove{width:34px;height:34px;border-radius:50%;font-size:20px}
+.remove:hover{background:rgba(255,255,255,.08);color:#fff}
+.form-grid input,.form-grid textarea,.admin-toolbar select,.admin-order-controls select,.admin-order-controls input,.checkout #utr{min-height:46px}
+.form-grid input:focus,.form-grid textarea:focus,.checkout #utr:focus{border-color:rgba(255,229,176,.55);box-shadow:0 0 0 3px rgba(233,189,112,.08)}
+.panel,.order-card,.admin-order-card,.admin-product-card{box-shadow:0 16px 45px rgba(0,0,0,.16)}
+.google-login{min-height:50px;transition:transform .2s,box-shadow .2s}
+.google-login:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,0,0,.2)}
+.empty-search{grid-column:1/-1;padding:35px 20px;text-align:center;border:1px dashed var(--line);border-radius:20px;color:var(--muted)}
+.footer{background:rgba(0,0,0,.08)}
+@media(max-width:900px){
+ .hero{min-height:auto;padding-top:48px;padding-bottom:65px}
+ .hero-art{height:390px}
+ .section{padding-top:82px;padding-bottom:82px}
+ .product-grid{gap:14px}
+ .product-art{height:230px}
+}
+@media(max-width:560px){
+ .nav{height:66px;padding:0 5%}
+ .brand{font-size:12px;gap:7px}
+ .brand-mark{font-size:27px}
+ .nav-actions{gap:7px}
+ .icon-btn{padding:8px 12px;font-size:12px}
+ .menu-toggle{padding:8px 12px}
+ .hero{padding:35px 6% 55px;gap:0}
+ .hero-art{height:285px;order:-1}
+ .moon{width:180px;height:180px}
+ .orb{transform:scale(.78)}
+ .hero h1{font-size:clamp(52px,14vw,68px);margin:14px 0}
+ .hero-copy>p{font-size:15px;line-height:1.75}
+ .hero-actions{gap:16px;flex-wrap:wrap;margin-top:22px}
+ .ticker{justify-content:center;gap:10px 20px;padding:15px 6%;font-size:9px}
+ .section{padding:68px 6%}
+ .section-head{margin-bottom:25px}
+ .section h2{font-size:clamp(42px,11vw,58px)}
+ .collection-tools{display:block;margin:0 0 20px}
+ .search-wrap{width:100%}
+ .product-count{display:block;margin:10px 4px 0}
+ .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .product-card{padding:8px;border-radius:17px}
+ .product-art{height:clamp(145px,47vw,210px);border-radius:12px}
+ .product-info{padding:12px 3px 4px}
+ .product-info h3{font-size:17px}
+ .product-info p{font-size:11px;min-height:52px;line-height:1.45}
+ .product-bottom{align-items:center;gap:5px}
+ .price{font-size:13px}
+ .add-btn{font-size:11px;padding:7px 9px;min-height:36px}
+ .story-card{padding:28px 23px}
+ .story-card h2{font-size:48px}
+ .story-card>p{font-size:14px;line-height:1.8}
+ .story-points{gap:15px;font-size:12px}
+ .story-illustration{min-height:290px}
+ .promise{gap:8px}
+ .promise>div{padding:20px 15px}
+ .footer{padding:23px 6%;font-size:11px}
+ .drawer{padding:25px 21px}
+ .login-layout{gap:20px}
+ .login-art{height:270px;transform:scale(.82);margin:-20px 0}
+ .login-card{padding:29px 22px;border-radius:24px}
+ .login-card h1{font-size:48px}
+ .panel{padding:21px;border-radius:22px}
+ .checkout,.orders-page,.admin-page{padding-left:5%;padding-right:5%}
+ .orders-page h1,.admin-page h1,.account-page h1{font-size:48px}
+ .form-grid{gap:12px}
+ .admin-tabs{overflow-x:auto;padding-bottom:4px}
+ .admin-tabs button{white-space:nowrap}
+}
+@media(max-width:370px){
+ .product-grid{grid-template-columns:1fr}
+ .product-art{height:230px}
+ .product-info p{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
